@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://hanjang.hueeng.com/</loc><lastmod>2026-11-03</lastmod></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://hanjang.hueeng.com/</loc>
+    <lastmod>2026-11-03</lastmod>
+    <image:image><image:loc>https://hanjang.hueeng.com/assets/og.jpg</image:loc></image:image>
+    <image:image><image:loc>https://hanjang.hueeng.com/assets/shot-01.webp</image:loc></image:image>
+    <image:image><image:loc>https://hanjang.hueeng.com/assets/shot-02.webp</image:loc></image:image>
+    <image:image><image:loc>https://hanjang.hueeng.com/assets/shot-03.webp</image:loc></image:image>
+    <image:image><image:loc>https://hanjang.hueeng.com/assets/shot-04.webp</image:loc></image:image>
+    <image:image><image:loc>https://hanjang.hueeng.com/assets/shot-05.webp</image:loc></image:image>
+    <image:image><image:loc>https://hanjang.hueeng.com/assets/shot-ipad.webp</image:loc></image:image>
+  </url>
   <url><loc>https://hanjang.hueeng.com/privacy/</loc><lastmod>2026-11-03</lastmod></url>
   <url><loc>https://hanjang.hueeng.com/privacy/en/</loc><lastmod>2026-11-03</lastmod></url>
 </urlset>
