@@ -1,5 +1,6 @@
 name: Deploy
-# main 에 push → 홈서버(LXC 101) self-hosted 러너가 /opt/hueeng-sites 를 pull 하고 nginx 를 reload 한다.
+# main 에 push → 홈서버(LXC 101) self-hosted 러너가 /opt/hueeng-sites/deploy.sh 를 실행한다.
+# 서브모듈 원본 저장소(simcha-site·fly-lab·phototravelmap-site)의 변경은 서버의 hueeng-sites-sync.timer 가 5분마다 따라간다.
 on:
   push:
     branches: [main]
@@ -8,17 +9,12 @@ concurrency: { group: deploy, cancel-in-progress: false }
 jobs:
   deploy:
     runs-on: [self-hosted, homelab, sites]
+    timeout-minutes: 10
     steps:
-      - name: Pull and reload
+      - name: Deploy
         run: |
           set -euo pipefail
-          cd /opt/hueeng-sites
-          git fetch --prune origin main
-          git reset --hard origin/main
-          docker compose up -d
-          docker compose exec -T web nginx -t
-          docker compose exec -T web nginx -s reload
-          for h in jomhae car hanjang fly passport; do
-            code=$(curl -s -o /dev/null -w '%{http_code}' -H "Host: $h.hueeng.com" http://127.0.0.1:3108/)
-            echo "$h -> $code"; [ "$code" = 200 ]
-          done
+          # deploy.sh 자신도 이번 커밋 것으로 돌도록, 같은 잠금 안에서 체크아웃부터 맞춘다
+          flock -w 300 /run/lock/hueeng-sites-deploy.lock git -C /opt/hueeng-sites fetch -q --prune origin main
+          flock -w 300 /run/lock/hueeng-sites-deploy.lock git -C /opt/hueeng-sites reset -q --hard origin/main
+          FORCE=1 /opt/hueeng-sites/deploy.sh

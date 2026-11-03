@@ -1,0 +1,10 @@
+[Unit]
+Description=hueeng-sites 동기화 5분마다
+
+[Timer]
+OnBootSec=3min
+OnUnitActiveSec=5min
+RandomizedDelaySec=30s
+
+[Install]
+WantedBy=timers.target

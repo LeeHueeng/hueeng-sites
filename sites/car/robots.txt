@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://car.hueeng.com/sitemap.xml

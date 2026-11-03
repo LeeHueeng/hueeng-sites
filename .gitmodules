@@ -1,0 +1,12 @@
+[submodule "sites/car"]
+	path = sites/car
+	url = https://github.com/LeeHueeng/simcha-site.git
+	branch = main
+[submodule "sites/fly"]
+	path = sites/fly
+	url = https://github.com/LeeHueeng/fly-lab.git
+	branch = main
+[submodule "sites/passport"]
+	path = sites/passport
+	url = https://github.com/LeeHueeng/phototravelmap-site.git
+	branch = main

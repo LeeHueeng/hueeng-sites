@@ -1,0 +1,12 @@
+[Unit]
+Description=hueeng-sites: GitHub 저장소·서브모듈 원본을 따라가고 바뀌면 nginx 반영
+Documentation=https://github.com/LeeHueeng/hueeng-sites
+After=docker.service network-online.target
+Wants=network-online.target
+Requires=docker.service
+
+[Service]
+Type=oneshot
+Environment=QUIET=1
+ExecStart=/opt/hueeng-sites/deploy.sh
+TimeoutStartSec=600
