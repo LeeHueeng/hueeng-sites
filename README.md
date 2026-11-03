@@ -22,3 +22,4 @@
 - 새 페이지의 canonical/OG/발행자 JSON-LD 는 `python3 tools/seo_inject.py <file> --url <url> --site-name <이름> [--app-name --ios --android]` 로 한 번에 넣는다(멱등).
 - 네이버 서치어드바이저 인증 파일(`naver*.html`)은 각 사이트 루트에 그대로 둔다. 사이트맵은 `sites/<site>/sitemap.xml`.
 - 저장소 안의 파일은 그대로 공개되므로 비밀·메모를 넣지 않는다 (`.`·`README.md` 는 nginx 가 404).
+
