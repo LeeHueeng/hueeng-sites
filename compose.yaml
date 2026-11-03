@@ -1,0 +1,33 @@
+name: hueeng-sites
+# 홈서버(Proxmox LXC 101): 후엥(Hueeng) 정적 사이트 전부를 nginx 하나로.
+#   서버 배치: /opt/hueeng-sites ← 이 저장소 clone
+#   실행:      docker compose up -d        갱신: git pull → (설정 바뀌면) docker compose exec web nginx -s reload
+#   공개:      주 cloudflared(systemd) ingress — 각 호스트 → http://localhost:3108
+services:
+  web:
+    image: nginx:1.27-alpine
+    container_name: hueeng-sites-web
+    restart: unless-stopped
+    ports: ["127.0.0.1:3108:80"]
+    volumes:
+      - ./sites:/srv/sites:ro
+      - ./nginx/sites.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./nginx/common.conf:/etc/nginx/snippets/common.conf:ro
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "--header=Host: jomhae.hueeng.com", "http://127.0.0.1/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    read_only: true
+    tmpfs:
+      - /var/cache/nginx:size=32m
+      - /var/run:size=1m
+      - /tmp:size=8m
+    mem_limit: 96m
+    pids_limit: 64
+    cap_drop: [ALL]
+    cap_add: [CHOWN, SETUID, SETGID, NET_BIND_SERVICE]
+    security_opt: [no-new-privileges:true]
+    logging:
+      driver: json-file
+      options: {max-size: 10m, max-file: "3"}

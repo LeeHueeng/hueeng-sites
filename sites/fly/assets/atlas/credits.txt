@@ -1,0 +1,18 @@
+FLY LAB anatomical data attribution
+
+Source: https://github.com/VirtualFlyBrain/DrosAdultBRAINdomains
+Revision: 0f79bb86d199d54785fe6ad21cbd42ea373d9013
+Template: JFRC2 / JFRCtemplate2010
+
+Domain segmentation by Arnim Jenett, Kazunori Shinomiya and Kei Ito.
+Ito et al. (2014), A systematic nomenclature for the insect brain. Neuron 81(4):755-765.
+https://doi.org/10.1016/j.neuron.2013.12.017
+
+Template image by Arnim Jenett and colleagues, Janelia / FlyLight.
+Jenett et al. (2012), A GAL4-driver line resource for Drosophila neurobiology. Cell Reports 2(4):991-1001.
+https://doi.org/10.1016/j.celrep.2012.09.011
+
+Domain data: CC BY 4.0. https://creativecommons.org/licenses/by/4.0/
+See LICENSE.txt and LICENSE-NOTES.md for upstream terms and template attribution.
+Modifications: vertex clustering (2-unit cells, shell 2.5), duplicate/degenerate triangles removed, coordinates rounded to 2 decimals, JSON conversion; uniform scale and centering in browser.
+These are measured anatomical region surfaces, not neurons or connectivity matrices. Activity and behavior are illustrative game calculations, not biological recordings or a whole-brain simulation.

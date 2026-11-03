@@ -1,0 +1,12 @@
+.hand-catch-controls{padding:15px 18px;background:linear-gradient(110deg,#253722,#18241d);border-top:1px solid #47603b}
+.hand-catch-main{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.hand-catch-status{font-size:12px;font-weight:500;color:#adbea0;line-height:1.7}
+.hand-catch-button{flex:none;min-height:44px;padding:10px 18px;border:1px solid #b8d990;border-radius:7px;background:#c5ee86;color:#192c12;font-size:13px;font-weight:600;touch-action:manipulation}
+.hand-catch-button:disabled{cursor:not-allowed;background:#2e3c28;border-color:#4b5e3f;color:#86947b;opacity:1}
+.hand-catch-button:focus-visible{outline:2px solid #e0f5bd;outline-offset:4px}
+.hand-catch-controls[data-ready=true] .hand-catch-status{color:#d8f6a5}
+.hand-catch-controls[data-ready=true]{border-top-color:#abd278;background:linear-gradient(110deg,#334c29,#1d2e23)}
+.hand-catch-controls p{font-size:10px;line-height:1.9;color:#a3b297;margin:10px 0 0}
+.hand-active #gameCanvas{cursor:pointer}
+.hand-active .arena-badge{max-width:calc(100% - 30px);white-space:normal;width:max-content;line-height:1.7}
+@media(max-width:600px){.hand-catch-controls{padding:13px}.hand-catch-main{gap:10px;align-items:center}.hand-catch-status{font-size:11px}.hand-catch-button{padding:10px 13px;font-size:12px;min-height:44px}.hand-catch-controls p{font-size:9px}}

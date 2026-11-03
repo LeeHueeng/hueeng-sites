@@ -1,0 +1,24 @@
+name: Deploy
+# main 에 push → 홈서버(LXC 101) self-hosted 러너가 /opt/hueeng-sites 를 pull 하고 nginx 를 reload 한다.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+concurrency: { group: deploy, cancel-in-progress: false }
+jobs:
+  deploy:
+    runs-on: [self-hosted, homelab, sites]
+    steps:
+      - name: Pull and reload
+        run: |
+          set -euo pipefail
+          cd /opt/hueeng-sites
+          git fetch --prune origin main
+          git reset --hard origin/main
+          docker compose up -d
+          docker compose exec -T web nginx -t
+          docker compose exec -T web nginx -s reload
+          for h in jomhae car hanjang fly passport; do
+            code=$(curl -s -o /dev/null -w '%{http_code}' -H "Host: $h.hueeng.com" http://127.0.0.1:3108/)
+            echo "$h -> $code"; [ "$code" = 200 ]
+          done

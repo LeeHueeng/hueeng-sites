@@ -1,0 +1,15 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.hueeng.jomhae",
+      "sha256_cert_fingerprints": [
+        "36:7C:E9:5C:FC:30:B4:9E:74:DB:29:04:69:AF:5B:C9:E4:39:8D:21:6F:FA:EC:84:B0:33:16:1E:D3:CF:96:47",
+        "3A:89:31:BD:D6:68:35:89:ED:A0:80:BF:C5:CD:D4:08:21:B5:20:5C:B3:A4:11:9B:2E:47:9E:48:81:B6:94:05"
+      ]
+    }
+  }
+]

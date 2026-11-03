@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /f/
+
+Sitemap: https://jomhae.hueeng.com/sitemap.xml

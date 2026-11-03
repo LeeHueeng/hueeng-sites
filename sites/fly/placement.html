@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="ko">
+<head>
+ <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#111715">
+ <meta name="description" content="초파리 시뮬레이터의 새로운 게임. 방에 포충기와 가상 분사기를 배치하고 동일 조건의 반복 실험으로 비교합니다.">
+ <title>방역 배치 실험실 | FLY LAB</title>
+ <link rel="stylesheet" href="styles.css?v=20260914g"><link rel="stylesheet" href="placement.css?v=20260914j">
+ <script type="module" src="placement.js?v=20260914p"></script>
+  <link rel="stylesheet" href="project-links.css?v=20260914s">
+  <script type="module" src="project-links.js?v=20260914s"></script>
+</head>
+<body class="placement-page">
+ <div class="site-shell">
+  <header class="site-header"><a class="wordmark" href="./#/">FLY<span>LAB</span></a><nav><a href="./#/" data-copy="allGames"></a><a href="./#/room" data-copy="roomGame"></a></nav><label class="language-control"><span class="sr-only" data-copy="language"></span><select id="language"><option value="ko">한국어</option><option value="en">English</option><option value="ja">日本語</option><option value="zh">简体中文</option><option value="es">Español</option></select></label></header>
+  <main>
+   <div class="placement-heading"><div><p class="eyebrow">EXPERIMENT 05 / PLACEMENT LAB</p><h1 data-copy="title"></h1><p data-copy="subtitle"></p></div><span class="placement-stamp">DESIGN<br>COMPARE<br>REPEAT</span></div>
+   <p class="placement-safety" data-copy="disclaimer"></p>
+   <div class="placement-layout">
+    <section class="placement-editor">
+     <div class="panel-bar"><span data-copy="layoutTitle"></span><div class="placement-view-tabs"><button type="button" id="planView" aria-pressed="true" data-copy="planView"></button><button type="button" id="sceneView" aria-pressed="false" data-copy="sceneView"></button></div></div>
+     <div class="placement-settings"><label><span data-copy="roomSize"></span><select id="pSize"><option>8</option><option selected>12</option><option>16</option></select></label><label><span data-copy="population"></span><select id="pPopulation"><option>24</option><option selected>48</option><option>96</option></select></label><label><span data-copy="wind"></span><select id="pWind"><option value="none" data-copy="windNone"></option><option value="east" data-copy="windEast"></option><option value="west" data-copy="windWest"></option><option value="north" data-copy="windNorth"></option><option value="south" data-copy="windSouth"></option></select></label><label><span data-copy="seed"></span><input id="pSeed" type="number" min="1" max="999999" value="2026"></label></div>
+     <div id="placementTools" class="placement-tools" role="group" data-copy-aria="tools"></div>
+     <div class="placement-stage"><canvas id="placementCanvas" tabindex="0" data-copy-aria="canvasAria"></canvas><div id="placement3D" hidden></div><div class="placement-overlay"><span id="pClock">00.0 / 60</span><span id="pMode"></span></div></div>
+     <div class="placement-map-legend"><span><i class="legend-trap"></i><span data-copy="trap"></span></span><span><i class="legend-spray"></i><span data-copy="spray"></span></span><span><i class="legend-food"></i><span data-copy="food"></span></span><span><i class="legend-knocked"></i><span data-copy="knocked"></span></span></div>
+     <div class="placement-run-controls"><button type="button" class="play-button" id="pPlay" data-copy="play"></button><button type="button" class="text-button" id="pReset" data-copy="restart"></button><label><span data-copy="speed"></span><select id="pSpeed"><option value="1">1×</option><option value="4" selected>4×</option><option value="12">12×</option></select></label><label><input type="checkbox" id="pHeat" checked><span data-copy="heat"></span></label><label><input type="checkbox" id="pRanges" checked><span data-copy="ranges"></span></label></div>
+     <p class="placement-edit-hint" data-copy="editHint"></p>
+     <div class="placement-settings placement-precision"><label><span data-copy="precision"></span><select id="pAccuracy"><option value="precise" data-copy="precisionDefault"></option><option value="maximum" data-copy="precisionMaximum"></option></select></label><label><span data-copy="sliceHeight"></span><input id="pSlice" type="range" min="0.1" max="3.1" step="0.1" value="1"><output id="pSliceValue">1.0 m</output></label></div>
+     <p id="pResolution" class="placement-resolution"></p><p class="placement-field-note" data-copy="fieldNote"></p>
+     <details class="placement-coordinates"><summary data-copy="coordinates"></summary><div><label><span data-copy="selected"></span><select id="pSelected"></select></label><label>X<input id="pX" type="number" step="0.5" value="0"></label><label><span data-copy="deviceHeight"></span><input id="pY" type="number" step="0.1" min="0.2" max="2.95" value="1"></label><label>Z<input id="pZ" type="number" step="0.5" value="0"></label><button type="button" id="pApplyPosition" data-copy="placeAt"></button><button type="button" id="pDelete" data-copy="delete"></button></div></details>
+     <div class="placement-editor-footer"><button type="button" id="pImport" data-copy="importRoom"></button><button type="button" id="pDefaults" data-copy="defaults"></button><span id="pMessage" role="status"></span></div>
+    </section>
+    <aside class="placement-dashboard">
+     <div class="panel-bar"><span data-copy="resultsTitle"></span><span class="mono">60 GAME SECONDS</span></div>
+     <div class="placement-metrics"><div><span data-copy="captured"></span><strong id="pCaptured">0</strong></div><div><span data-copy="knocked"></span><strong id="pKnocked">0</strong></div><div><span data-copy="active"></span><strong id="pActive">48</strong></div><div><span data-copy="reduction"></span><strong id="pReduction">0<span>%</span></strong></div></div>
+     <p class="placement-score-note" data-copy="scoreNote"></p><canvas id="placementChart" data-copy-aria="chartAria"></canvas><div class="placement-chart-labels"><span>0</span><span data-copy="chartLabel"></span><span>60</span></div>
+     <div class="placement-device-count" id="pEquipment"></div>
+     <section class="placement-compare"><p class="eyebrow">SAME BUDGET / SAME SEEDS</p><h2 data-copy="compareTitle"></h2><p data-copy="compareNote"></p><div class="placement-compare-actions"><button type="button" id="pSaveA" data-copy="saveA"></button><button type="button" id="pRestoreA" data-copy="restoreA"></button></div><p id="pSavedNote" class="placement-saved-note"></p><button type="button" id="pCompare" class="placement-compare-button" data-copy="compare"></button><button type="button" id="pCancel" hidden data-copy="cancel"></button><progress id="pProgress" max="1" value="0" hidden></progress><p id="pProgressText" role="status"></p></section>
+     <p class="placement-small-note" data-copy="modelScope"></p>
+    </aside>
+   </div>
+   <section class="placement-ranking" id="rankingSection" hidden><div class="section-heading"><div><p class="eyebrow">TESTED CANDIDATES / NOT A GLOBAL OPTIMUM</p><h2 data-copy="rankingTitle"></h2></div><span id="pTrialInfo" class="mono"></span></div><p id="pWinner"></p><p id="pPaired" class="placement-paired" aria-live="polite"></p><p class="placement-ranking-note" data-copy="uncertainty"></p><div class="placement-table-wrap"><table><thead><tr><th>#</th><th data-copy="candidate"></th><th data-copy="meanScore"></th><th data-copy="meanCapture"></th><th data-copy="meanKnockdown"></th><th data-copy="apply"></th></tr></thead><tbody id="pRanking"></tbody></table></div><p id="pBaseline" class="placement-baseline"></p></section>
+  </main><footer class="site-footer"><a class="wordmark small" href="./#/">FLY<span>LAB</span></a><a href="./#/" data-copy="backToGames"></a><span class="mono">HUEENG.COM / EXPERIMENT 05</span></footer>
+ </div><noscript>이 게임은 JavaScript가 필요합니다. JavaScript is required.</noscript>
+</body></html>

@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/style.css?v=20261026"><link rel="icon" type="image/png" href="/assets/app-icon.png"><meta name="robots" content="noindex,follow">
+  <title>좀 해! 친구 초대</title>
+  <meta property="og:title" content="좀 해! 친구 초대">
+  <meta property="og:description" content="친구가 좀 해!에서 함께 다짐을 지키자고 초대했어요">
+  <meta property="og:image" content="https://jomhae.hueeng.com/og.png?v=20261026">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, "Apple SD Gothic Neo", sans-serif;
+      background: #FBF8F1; color: #2B2A28;
+      min-height: 100vh; display: flex; align-items: center; justify-content: center;
+      padding: 24px;
+    }
+    .card {
+      max-width: 430px; width: 100%; text-align: center;
+      background: #F3EEE2; border: 1.6px solid #2B2A28; border-radius: 18px;
+      padding: 32px 24px;
+    }
+    h1 { font-size: 22px; margin-bottom: 6px; }
+    .sub { color: #6F6A60; font-size: 14px; margin-bottom: 22px; }
+    .code {
+      font-size: 30px; font-weight: 800; letter-spacing: 3px;
+      background: #FFE27A; border-radius: 10px; padding: 12px 8px;
+      margin-bottom: 8px; user-select: all;
+    }
+    .copy { background: none; border: none; color: #286894; font-size: 14px; cursor: pointer; margin-bottom: 24px; }
+    .copy:disabled { cursor: default; opacity: .55; }
+    .status { font-size: 13px; line-height: 1.6; margin: 0 0 14px; color: #6F6A60; }
+    .btn {
+      display: block; width: 100%; padding: 14px; border-radius: 12px;
+      font-size: 16px; font-weight: 700; text-decoration: none; cursor: pointer;
+      margin-bottom: 10px; border: 1.6px solid #2B2A28;
+    }
+    .primary { background: #2B2A28; color: #FBF8F1; }
+    .secondary { background: #FBF8F1; color: #2B2A28; }
+    .btn[aria-disabled="true"] { opacity: .5; cursor: default; }
+    .hint { color: #B9B2A4; font-size: 12px; margin-top: 14px; line-height: 1.5; }
+    @media (prefers-color-scheme: dark) {
+      body { background: #23262B; color: #ECE7DC; }
+      .card { background: #2C3036; border-color: #ECE7DC; }
+      .code { color: #2B2A28; }
+      .primary { background: #ECE7DC; color: #23262B; border-color: #ECE7DC; }
+      .secondary { background: #2C3036; color: #ECE7DC; border-color: #ECE7DC; }
+      .status { color: #C8C2B6; }
+    }
+  .invite-brand{display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;font:700 30px Gaegu,sans-serif;margin-bottom:20px}.invite-brand img{border-radius:9px}h1{font-family:Gaegu,sans-serif;font-size:30px}.status{line-height:1.8}.copy:disabled{opacity:.55;cursor:default}.btn[aria-disabled="true"]{opacity:.55;cursor:default}.hint{color:#69655c}.card{box-shadow:5px 6px 0 #e2dbca55}body{min-height:100svh}
+  @media (prefers-color-scheme: dark){.hint{color:#C8C2B6}.copy{color:#9dc9ec}.btn.secondary{background:#2C3036;color:#ECE7DC;border-color:#ECE7DC}}
+  </style>
+<meta name="description" content="친구가 좀 해!에서 함께 다짐을 지키자고 초대했어요.">
+</head>
+<body>
+  <main class="card"><a class="invite-brand" href="/" aria-label="좀 해! 홈"><img src="/assets/app-icon.png" width="36" height="36" alt=""><span>좀 해!</span></a>
+    <h1>✏️ 좀 해! 친구 초대</h1>
+    <p class="sub">친구가 함께 다짐을 지키자고 초대했어요</p>
+    <div class="code" id="code" tabindex="-1" aria-label="친구 초대 코드">코드 확인 중</div>
+    <p class="status" id="invite-status" role="status" aria-live="polite"></p>
+    <button class="copy" id="copy" type="button" disabled>코드 복사</button>
+    <a class="btn primary" id="open" aria-disabled="true" tabindex="-1">앱에서 친구 추가 열기</a>
+    <a class="btn secondary" href="https://apps.apple.com/app/id6803312438">iPhone · App Store에서 받기</a>
+    <a class="btn secondary" href="https://play.google.com/store/apps/details?id=com.hueeng.jomhae">Android · Google Play에서 받기</a>
+    <p class="status">Android도 Google Play에서 바로 설치할 수 있어요.</p>
+    <p class="hint">
+      앱이 설치돼 있으면 친구 추가 화면을 열 수 있어요.<br>
+      설치 후에는 이 링크를 다시 열거나, 앱의<br>
+      [그룹 → 친구 → 친구 추가]에 코드를 입력해 주세요.
+    </p>
+    <p class="hint"><a href="/support.html">설치나 친구 초대에 도움이 필요해요</a></p>
+  </main>
+  <script>
+    (function () {
+      var codeElement = document.getElementById('code');
+      var copyButton = document.getElementById('copy');
+      var openLink = document.getElementById('open');
+      var status = document.getElementById('invite-status');
+      var raw = '';
+      try {
+        var path = location.pathname.match(/^\/f\/([^/]+)\/?$/);
+        raw = path ? decodeURIComponent(path[1]) : '';
+      } catch (_) {
+        raw = '';
+      }
+      // 8자리 영숫자 또는 4-4 표기만 허용한다. 다른 문자를 지워 유효하게 만들지 않는다.
+      var code = raw.replace('-', '').toUpperCase();
+      var valid = (raw.length === 8 || (raw.length === 9 && raw[4] === '-')) && /^[A-Za-z0-9]{4}-?[A-Za-z0-9]{4}$/.test(raw) && /^[A-Z0-9]{8}$/.test(code);
+      openLink.addEventListener('click', function (event) {
+        if (!valid) event.preventDefault();
+      });
+      if (!valid) {
+        codeElement.textContent = '유효하지 않은 코드';
+        status.textContent = '8자리 친구 초대 코드를 확인할 수 없어요. 친구에게 초대 링크를 다시 보내 달라고 해 주세요.';
+        return;
+      }
+      codeElement.textContent = code.slice(0, 4) + '-' + code.slice(4);
+      status.textContent = '친구 추가 화면에서 상대를 확인한 뒤 요청을 보내 주세요.';
+      openLink.href = 'jomhae:///f/' + code;
+      openLink.removeAttribute('aria-disabled');
+      openLink.removeAttribute('tabindex');
+      copyButton.disabled = false;
+      copyButton.addEventListener('click', async function () {
+        copyButton.disabled = true;
+        copyButton.textContent = '복사 중…';
+        try {
+          if (!navigator.clipboard || !navigator.clipboard.writeText) throw new Error('Clipboard unavailable');
+          await navigator.clipboard.writeText(code);
+          copyButton.textContent = '복사됐어요 ✓';
+          status.textContent = '친구 코드가 복사됐어요.';
+        } catch (_) {
+          copyButton.textContent = '코드 복사';
+          status.textContent = '자동 복사를 하지 못했어요. 위 코드를 길게 누르거나 선택해서 직접 복사해 주세요.';
+          try {
+            codeElement.focus();
+            var selection = window.getSelection();
+            var range = document.createRange();
+            range.selectNodeContents(codeElement);
+            selection.removeAllRanges();
+            selection.addRange(range);
+          } catch (_) {}
+        } finally {
+          copyButton.disabled = false;
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

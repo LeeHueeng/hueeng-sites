@@ -1,0 +1,11 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appIDs": ["3K837X4HYH.com.hueeng.jomhae"],
+        "components": [{ "/": "/f/*" }]
+      }
+    ]
+  }
+}
