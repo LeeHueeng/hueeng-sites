@@ -87,6 +87,13 @@ check car.hueeng.com /chat/invite/test 200
 check car.hueeng.com /README.md 404
 check hanjang.hueeng.com / 200
 check hanjang.hueeng.com /privacy/ 200
+check hanjang.hueeng.com /robots.txt 200
+check lastblock.hueeng.com / 200
+check lastblock.hueeng.com /robots.txt 200
+check lastblock.hueeng.com /sitemap.xml 200
+check vidomaker.hueeng.com / 200
+check vidomaker.hueeng.com /robots.txt 200
+check vidomaker.hueeng.com /sitemap.xml 200
 check fly.hueeng.com / 200
 check fly.hueeng.com /server.js 404
 check passport.hueeng.com / 200

@@ -7,6 +7,8 @@
 |---|---|---|
 | jomhae.hueeng.com | `sites/jomhae/` | 이 저장소 |
 | hanjang.hueeng.com | `sites/hanjang/` | 이 저장소 |
+| lastblock.hueeng.com | `sites/lastblock/` | 이 저장소 (게임 소개만. 지원·개인정보 문서는 게임 서버 `survival.hueeng.com/legal/`, `survival.hueeng.com/` 루트는 Cloudflare 리다이렉트 규칙으로 이 사이트) |
+| vidomaker.hueeng.com | `sites/vidomaker/` | 이 저장소 (뚝딱무비 앱 소개. 웹 편집기 `vido.hueeng.com`·약관 `vido-api.hueeng.com` 은 뚝딱무비 자체 배포) |
 | car.hueeng.com | `sites/car/` → 서브모듈 [LeeHueeng/simcha-site](https://github.com/LeeHueeng/simcha-site) | simcha-site 저장소 (GitHub Pages `leehueeng.github.io/simcha-site/` 도 같은 파일) |
 | fly.hueeng.com | `sites/fly/` → 서브모듈 [LeeHueeng/fly-lab](https://github.com/LeeHueeng/fly-lab) | fly-lab 저장소 (앱 저장소 그대로, 개발용 파일은 nginx 가 막음) |
 | passport.hueeng.com | `sites/passport/` → 서브모듈 [LeeHueeng/phototravelmap-site](https://github.com/LeeHueeng/phototravelmap-site) | phototravelmap-site 저장소 (GitHub Pages 원본). nginx 가 github.io 주소를 passport.hueeng.com 으로 바꿔 내보내고 이 도메인의 네이버 인증을 붙인다 |
@@ -28,7 +30,7 @@ git push (서브모듈 원본 main) → 서버 hueeng-sites-sync.timer → /opt/
 
 - `/opt/hueeng-sites` — 이 저장소 clone(서브모듈 포함). 손으로 파일을 고치지 않는다(다음 동기화가 되돌린다).
 - 컨테이너 `hueeng-sites-web` (`compose.yaml`) — `127.0.0.1:3108`, 읽기 전용, 96MB. 설정은 **디렉터리**로 마운트한다(파일 단위 마운트는 git 이 파일을 새로 쓰면 옛 내용을 계속 본다).
-- 공개 경로: 주 cloudflared(systemd) `/etc/cloudflared/config.yml` ingress — 다섯 호스트 → `http://localhost:3108`.
+- 공개 경로: 주 cloudflared(systemd) `/etc/cloudflared/config.yml` ingress — 일곱 호스트 → `http://localhost:3108`.
 - 러너: `/opt/actions-runner-hueeng-sites` (서비스 `actions.runner.LeeHueeng-hueeng-sites.lxc101-sites`, 라벨 `self-hosted,homelab,sites`).
 - 타이머: `ops/hueeng-sites-sync.{service,timer}` 를 `/etc/systemd/system/` 에 복사해 `systemctl enable --now hueeng-sites-sync.timer`.
 - 감시: `/healthz`(Host 없이) — 홈랩 상태 페이지·HA 수집기가 본다. 외부 응답은 Prometheus blackbox 가 호스트별로 본다.
@@ -46,4 +48,11 @@ git push (서브모듈 원본 main) → 서버 hueeng-sites-sync.timer → /opt/
 ## 여기 없는 것
 
 동적 서비스는 각자의 저장소·배포를 쓴다: hueeng.com(Next.js, LeeHueeng/hueeng-company), 문어굴 지원센터(octomine.hueeng.com), 뚝딱무비(vido·vido-api), 거지방, 마이일보.
-라스트 블록 법적 고지(`survival.hueeng.com/legal/`)는 게임 서버가 서빙하고 게임 API 검사가 함께 확인하므로 LeeHueeng/last-block 의 `server/wwwroot/legal/` 에 둔다.
+라스트 블록 법적 고지(`survival.hueeng.com/legal/`)는 게임 서버가 서빙하고 게임 API 검사가 함께 확인하므로 LeeHueeng/last-block 의 `server/wwwroot/legal/` 에 둔다. 게임 소개는 이 저장소의 `sites/lastblock/`.
+문어굴 소개는 지원센터 서버가 직접 그린다(octomine.hueeng.com 홈, 원본 octo-mine-server `lib/home-page.mjs`·`public/site/`).
+
+## 앱 소개 페이지 공통 형식
+
+좀해·심플차계부·한장·라스트 블록·뚝딱무비·문어굴 소개 페이지는 같은 뼈대를 쓴다: 히어로(스토어 버튼 2개) → 한눈에 보기 → 기능 섹션(실제 화면) → 스크린샷 갤러리 → 다운로드 → 자주 묻는 질문 → 사업자 정보.
+- 스토어 버튼: 출시된 스토어는 링크, 아직 없는 스토어는 링크 없는 `Google Play 출시 예정`(`aria-disabled`). 출시되면 링크로 바꾸고 JSON-LD `MobileApplication` 을 하나 더 넣는다.
+- 화면 이미지는 WebP, 앱 고유 폰트는 쓰인 글자만 서브셋한 woff2. 외부 CDN·스크립트 없음.
