@@ -97,6 +97,11 @@ check vidomaker.hueeng.com /sitemap.xml 200
 check fly.hueeng.com / 200
 check fly.hueeng.com /server.js 404
 check passport.hueeng.com / 200
+check passport.hueeng.com /terms.html 200
+check hanjang.hueeng.com /terms/ 200
+check vidomaker.hueeng.com /terms 200
+check vidomaker.hueeng.com /terms/2026-11-18 200
+check lastblock.hueeng.com /legal/terms.html 200
 check passport.hueeng.com /naver3eea2962cade5b83940183dd3224d099.html 200
 if curl -s -H 'Host: passport.hueeng.com' "http://127.0.0.1:$PORT/" | grep -q 'leehueeng.github.io/phototravelmap-site'; then
   echo "FAIL passport.hueeng.com / still has github.io URLs (sub_filter)"; fail=1
