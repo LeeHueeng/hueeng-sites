@@ -11,7 +11,7 @@
 | vidomaker.hueeng.com | `sites/vidomaker/` | 이 저장소 (뚝딱무비 앱 소개. 웹 편집기 `vido.hueeng.com`·약관 `vido-api.hueeng.com` 은 뚝딱무비 자체 배포) |
 | car.hueeng.com | `sites/car/` → 서브모듈 [LeeHueeng/simcha-site](https://github.com/LeeHueeng/simcha-site) | simcha-site 저장소 (GitHub Pages `leehueeng.github.io/simcha-site/` 도 같은 파일) |
 | fly.hueeng.com | `sites/fly/` → 서브모듈 [LeeHueeng/fly-lab](https://github.com/LeeHueeng/fly-lab) | fly-lab 저장소 (앱 저장소 그대로, 개발용 파일은 nginx 가 막음) |
-| passport.hueeng.com | `sites/passport/` → 서브모듈 [LeeHueeng/phototravelmap-site](https://github.com/LeeHueeng/phototravelmap-site) | phototravelmap-site 저장소 (GitHub Pages 원본). nginx 가 github.io 주소를 passport.hueeng.com 으로 바꿔 내보내고 이 도메인의 네이버 인증을 붙인다 |
+| passport.hueeng.com | `sites/passport/` → 서브모듈 [LeeHueeng/phototravelmap-site](https://github.com/LeeHueeng/phototravelmap-site) | phototravelmap-site 저장소 (GitHub Pages 에도 같은 파일). 2026-11-27 부터 저장소 파일이 직접 `https://passport.hueeng.com/` 을 canonical · 사이트맵 주소로 적는다 — GitHub Pages 사본도 이 도메인을 대표 주소로 가리켜 검색에서는 이 도메인으로 모인다(전에는 github.io 를 적고 nginx 가 바꿔 내보내서, 두 주소가 서로 자기가 대표라고 했다). nginx 의 주소 바꾸기는 남겨 두었지만 바꿀 것이 없고, 이 도메인의 네이버 인증은 nginx 가 붙인다 |
 
 서브모듈 사이트는 **원본 저장소 main 에 push 하면 끝**이다. 서버가 5분마다 원본 최신을 따라간다(이 저장소의 서브모듈 커밋을 올릴 필요 없음).
 
